@@ -1,0 +1,1 @@
+# cossistant-typescript
