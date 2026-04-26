@@ -15,11 +15,7 @@ export class ID extends APIResource {
    * ```
    */
   deleteID(options?: RequestOptions): APIPromise<void> {
-    return this._client.delete('/v1/contacts/:id', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-      __security: {},
-    });
+    return this._client.delete('/v1/contacts/:id', { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]), __security: {  } });
   }
 
   /**
@@ -31,7 +27,7 @@ export class ID extends APIResource {
    * ```
    */
   retrieveID(options?: RequestOptions): APIPromise<IDRetrieveIDResponse> {
-    return this._client.get('/v1/contacts/:id', { ...options, __security: {} });
+    return this._client.get('/v1/contacts/:id', { ...options, __security: {  } });
   }
 
   /**
@@ -42,11 +38,8 @@ export class ID extends APIResource {
    * const response = await client.contacts.id.updateID();
    * ```
    */
-  updateID(
-    body: IDUpdateIDParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<IDUpdateIDResponse> {
-    return this._client.patch('/v1/contacts/:id', { body, ...options, __security: {} });
+  updateID(body: IDUpdateIDParams | null | undefined = {}, options?: RequestOptions): APIPromise<IDUpdateIDResponse> {
+    return this._client.patch('/v1/contacts/:id', { body, ...options, __security: {  } });
   }
 
   /**
@@ -59,11 +52,8 @@ export class ID extends APIResource {
    * });
    * ```
    */
-  updateMetadata(
-    body: IDUpdateMetadataParams,
-    options?: RequestOptions,
-  ): APIPromise<IDUpdateMetadataResponse> {
-    return this._client.patch('/v1/contacts/:id/metadata', { body, ...options, __security: {} });
+  updateMetadata(body: IDUpdateMetadataParams, options?: RequestOptions): APIPromise<IDUpdateMetadataResponse> {
+    return this._client.patch('/v1/contacts/:id/metadata', { body, ...options, __security: {  } });
   }
 }
 
@@ -298,6 +288,6 @@ export declare namespace ID {
     type IDUpdateIDResponse as IDUpdateIDResponse,
     type IDUpdateMetadataResponse as IDUpdateMetadataResponse,
     type IDUpdateIDParams as IDUpdateIDParams,
-    type IDUpdateMetadataParams as IDUpdateMetadataParams,
+    type IDUpdateMetadataParams as IDUpdateMetadataParams
   };
 }

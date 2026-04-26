@@ -2,10 +2,7 @@
 
 import Cossistant from 'cossistant';
 
-const client = new Cossistant({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Cossistant({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource websites', () => {
   // Mock server tests are disabled
@@ -23,15 +20,12 @@ describe('resource websites', () => {
   // Mock server tests are disabled
   test.skip('retrieve: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.websites.retrieve(
-        {
-          Origin: 'https://example.com',
-          'X-Public-Key': 'pk_test_xxx',
-          'X-Visitor-Id': '01JG000000000000000000000',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Cossistant.NotFoundError);
+    await expect(client.websites.retrieve({
+    Origin: 'https://example.com',
+    'X-Public-Key': 'pk_test_xxx',
+    'X-Visitor-Id': '01JG000000000000000000000',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Cossistant.NotFoundError);
   });
 });

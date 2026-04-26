@@ -11,23 +11,9 @@ export class Websites extends APIResource {
    * endpoint supports both public and private API keys with different authentication
    * methods.
    */
-  retrieve(
-    params: WebsiteRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<WebsiteRetrieveResponse> {
-    const { Origin, 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID } = params ?? {};
-    return this._client.get('/v1/websites', {
-      ...options,
-      headers: buildHeaders([
-        {
-          ...(Origin != null ? { Origin: Origin } : undefined),
-          ...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined),
-          ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined),
-        },
-        options?.headers,
-      ]),
-      __security: {},
-    });
+  retrieve(params: WebsiteRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<WebsiteRetrieveResponse> {
+    const { Origin, 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID } = params ?? {}
+    return this._client.get('/v1/websites', { ...options, headers: buildHeaders([{...(Origin != null ? { Origin: Origin } : undefined), ...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined), ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined)}, options?.headers]), __security: {  } });
   }
 }
 
@@ -205,6 +191,6 @@ export interface WebsiteRetrieveParams {
 export declare namespace Websites {
   export {
     type WebsiteRetrieveResponse as WebsiteRetrieveResponse,
-    type WebsiteRetrieveParams as WebsiteRetrieveParams,
+    type WebsiteRetrieveParams as WebsiteRetrieveParams
   };
 }
