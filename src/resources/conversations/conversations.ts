@@ -36,19 +36,8 @@ export class Conversations extends APIResource {
    * ```
    */
   create(params: ConversationCreateParams, options?: RequestOptions): APIPromise<ConversationCreateResponse> {
-    const { 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID, ...body } = params;
-    return this._client.post('/v1/conversations', {
-      body,
-      ...options,
-      headers: buildHeaders([
-        {
-          ...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined),
-          ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined),
-        },
-        options?.headers,
-      ]),
-      __security: {},
-    });
+    const { 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID, ...body } = params
+    return this._client.post('/v1/conversations', { body, ...options, headers: buildHeaders([{...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined), ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined)}, options?.headers]), __security: {  } });
   }
 
   /**
@@ -61,23 +50,9 @@ export class Conversations extends APIResource {
    * );
    * ```
    */
-  retrieve(
-    conversationID: string,
-    params: ConversationRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ConversationRetrieveResponse> {
-    const { 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID } = params ?? {};
-    return this._client.get(path`/v1/conversations/${conversationID}`, {
-      ...options,
-      headers: buildHeaders([
-        {
-          ...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined),
-          ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined),
-        },
-        options?.headers,
-      ]),
-      __security: {},
-    });
+  retrieve(conversationID: string, params: ConversationRetrieveParams | null | undefined = {}, options?: RequestOptions): APIPromise<ConversationRetrieveResponse> {
+    const { 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID } = params ?? {}
+    return this._client.get(path`/v1/conversations/${conversationID}`, { ...options, headers: buildHeaders([{...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined), ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined)}, options?.headers]), __security: {  } });
   }
 
   /**
@@ -89,23 +64,9 @@ export class Conversations extends APIResource {
    * const conversations = await client.conversations.list();
    * ```
    */
-  list(
-    params: ConversationListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ConversationListResponse> {
-    const { 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID, ...query } = params ?? {};
-    return this._client.get('/v1/conversations', {
-      query,
-      ...options,
-      headers: buildHeaders([
-        {
-          ...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined),
-          ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined),
-        },
-        options?.headers,
-      ]),
-      __security: {},
-    });
+  list(params: ConversationListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ConversationListResponse> {
+    const { 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID, ...query } = params ?? {}
+    return this._client.get('/v1/conversations', { query, ...options, headers: buildHeaders([{...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined), ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined)}, options?.headers]), __security: {  } });
   }
 
   /**
@@ -119,16 +80,8 @@ export class Conversations extends APIResource {
    * );
    * ```
    */
-  getTimeline(
-    conversationID: string,
-    query: ConversationGetTimelineParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ConversationGetTimelineResponse> {
-    return this._client.get(path`/v1/conversations/${conversationID}/timeline`, {
-      query,
-      ...options,
-      __security: {},
-    });
+  getTimeline(conversationID: string, query: ConversationGetTimelineParams | null | undefined = {}, options?: RequestOptions): APIPromise<ConversationGetTimelineResponse> {
+    return this._client.get(path`/v1/conversations/${conversationID}/timeline`, { query, ...options, __security: {  } });
   }
 
   /**
@@ -143,16 +96,8 @@ export class Conversations extends APIResource {
    * );
    * ```
    */
-  reportTyping(
-    conversationID: string,
-    body: ConversationReportTypingParams,
-    options?: RequestOptions,
-  ): APIPromise<ConversationReportTypingResponse> {
-    return this._client.post(path`/v1/conversations/${conversationID}/typing`, {
-      body,
-      ...options,
-      __security: {},
-    });
+  reportTyping(conversationID: string, body: ConversationReportTypingParams, options?: RequestOptions): APIPromise<ConversationReportTypingResponse> {
+    return this._client.post(path`/v1/conversations/${conversationID}/typing`, { body, ...options, __security: {  } });
   }
 
   /**
@@ -167,16 +112,8 @@ export class Conversations extends APIResource {
    * );
    * ```
    */
-  submitRating(
-    conversationID: string,
-    body: ConversationSubmitRatingParams,
-    options?: RequestOptions,
-  ): APIPromise<ConversationSubmitRatingResponse> {
-    return this._client.post(path`/v1/conversations/${conversationID}/rating`, {
-      body,
-      ...options,
-      __security: {},
-    });
+  submitRating(conversationID: string, body: ConversationSubmitRatingParams, options?: RequestOptions): APIPromise<ConversationSubmitRatingResponse> {
+    return this._client.post(path`/v1/conversations/${conversationID}/rating`, { body, ...options, __security: {  } });
   }
 }
 
@@ -243,18 +180,7 @@ export namespace ConversationCreateResponse {
        * compatible parts (text, reasoning, tool-\*, source-url, source-document,
        * step-start, file, image) and Cossistant-specific parts (event, metadata).
        */
-      parts: Array<
-        | LastTimelineItem.UnionMember0
-        | LastTimelineItem.UnionMember1
-        | LastTimelineItem.UnionMember2
-        | LastTimelineItem.UnionMember3
-        | LastTimelineItem.UnionMember4
-        | LastTimelineItem.Type
-        | LastTimelineItem.UnionMember6
-        | LastTimelineItem.UnionMember7
-        | LastTimelineItem.UnionMember8
-        | LastTimelineItem.UnionMember9
-      >;
+      parts: Array<LastTimelineItem.UnionMember0 | LastTimelineItem.UnionMember1 | LastTimelineItem.UnionMember2 | LastTimelineItem.UnionMember3 | LastTimelineItem.UnionMember4 | LastTimelineItem.Type | LastTimelineItem.UnionMember6 | LastTimelineItem.UnionMember7 | LastTimelineItem.UnionMember8 | LastTimelineItem.UnionMember9>;
 
       /**
        * Main text content of the timeline item
@@ -338,7 +264,7 @@ export namespace ConversationCreateResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -438,7 +364,7 @@ export namespace ConversationCreateResponse {
         export interface CallProviderMetadata {
           cossistant?: CallProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace CallProviderMetadata {
@@ -495,7 +421,7 @@ export namespace ConversationCreateResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -578,7 +504,7 @@ export namespace ConversationCreateResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -666,7 +592,7 @@ export namespace ConversationCreateResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -806,23 +732,7 @@ export namespace ConversationCreateResponse {
         /**
          * Type of event that occurred
          */
-        eventType:
-          | 'assigned'
-          | 'unassigned'
-          | 'participant_requested'
-          | 'participant_joined'
-          | 'participant_left'
-          | 'status_changed'
-          | 'priority_changed'
-          | 'tag_added'
-          | 'tag_removed'
-          | 'resolved'
-          | 'reopened'
-          | 'visitor_blocked'
-          | 'visitor_unblocked'
-          | 'visitor_identified'
-          | 'ai_paused'
-          | 'ai_resumed';
+        eventType: 'assigned' | 'unassigned' | 'participant_requested' | 'participant_joined' | 'participant_left' | 'status_changed' | 'priority_changed' | 'tag_added' | 'tag_removed' | 'resolved' | 'reopened' | 'visitor_blocked' | 'visitor_unblocked' | 'visitor_identified' | 'ai_paused' | 'ai_resumed';
 
         /**
          * AI agent targeted by the event, if applicable
@@ -885,18 +795,7 @@ export namespace ConversationCreateResponse {
      * compatible parts (text, reasoning, tool-\*, source-url, source-document,
      * step-start, file, image) and Cossistant-specific parts (event, metadata).
      */
-    parts: Array<
-      | InitialTimelineItem.UnionMember0
-      | InitialTimelineItem.UnionMember1
-      | InitialTimelineItem.UnionMember2
-      | InitialTimelineItem.UnionMember3
-      | InitialTimelineItem.UnionMember4
-      | InitialTimelineItem.Type
-      | InitialTimelineItem.UnionMember6
-      | InitialTimelineItem.UnionMember7
-      | InitialTimelineItem.UnionMember8
-      | InitialTimelineItem.UnionMember9
-    >;
+    parts: Array<InitialTimelineItem.UnionMember0 | InitialTimelineItem.UnionMember1 | InitialTimelineItem.UnionMember2 | InitialTimelineItem.UnionMember3 | InitialTimelineItem.UnionMember4 | InitialTimelineItem.Type | InitialTimelineItem.UnionMember6 | InitialTimelineItem.UnionMember7 | InitialTimelineItem.UnionMember8 | InitialTimelineItem.UnionMember9>;
 
     /**
      * Main text content of the timeline item
@@ -980,7 +879,7 @@ export namespace ConversationCreateResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -1080,7 +979,7 @@ export namespace ConversationCreateResponse {
       export interface CallProviderMetadata {
         cossistant?: CallProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace CallProviderMetadata {
@@ -1137,7 +1036,7 @@ export namespace ConversationCreateResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -1220,7 +1119,7 @@ export namespace ConversationCreateResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -1308,7 +1207,7 @@ export namespace ConversationCreateResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -1448,23 +1347,7 @@ export namespace ConversationCreateResponse {
       /**
        * Type of event that occurred
        */
-      eventType:
-        | 'assigned'
-        | 'unassigned'
-        | 'participant_requested'
-        | 'participant_joined'
-        | 'participant_left'
-        | 'status_changed'
-        | 'priority_changed'
-        | 'tag_added'
-        | 'tag_removed'
-        | 'resolved'
-        | 'reopened'
-        | 'visitor_blocked'
-        | 'visitor_unblocked'
-        | 'visitor_identified'
-        | 'ai_paused'
-        | 'ai_resumed';
+      eventType: 'assigned' | 'unassigned' | 'participant_requested' | 'participant_joined' | 'participant_left' | 'status_changed' | 'priority_changed' | 'tag_added' | 'tag_removed' | 'resolved' | 'reopened' | 'visitor_blocked' | 'visitor_unblocked' | 'visitor_identified' | 'ai_paused' | 'ai_resumed';
 
       /**
        * AI agent targeted by the event, if applicable
@@ -1562,18 +1445,7 @@ export namespace ConversationRetrieveResponse {
        * compatible parts (text, reasoning, tool-\*, source-url, source-document,
        * step-start, file, image) and Cossistant-specific parts (event, metadata).
        */
-      parts: Array<
-        | LastTimelineItem.UnionMember0
-        | LastTimelineItem.UnionMember1
-        | LastTimelineItem.UnionMember2
-        | LastTimelineItem.UnionMember3
-        | LastTimelineItem.UnionMember4
-        | LastTimelineItem.Type
-        | LastTimelineItem.UnionMember6
-        | LastTimelineItem.UnionMember7
-        | LastTimelineItem.UnionMember8
-        | LastTimelineItem.UnionMember9
-      >;
+      parts: Array<LastTimelineItem.UnionMember0 | LastTimelineItem.UnionMember1 | LastTimelineItem.UnionMember2 | LastTimelineItem.UnionMember3 | LastTimelineItem.UnionMember4 | LastTimelineItem.Type | LastTimelineItem.UnionMember6 | LastTimelineItem.UnionMember7 | LastTimelineItem.UnionMember8 | LastTimelineItem.UnionMember9>;
 
       /**
        * Main text content of the timeline item
@@ -1657,7 +1529,7 @@ export namespace ConversationRetrieveResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -1757,7 +1629,7 @@ export namespace ConversationRetrieveResponse {
         export interface CallProviderMetadata {
           cossistant?: CallProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace CallProviderMetadata {
@@ -1814,7 +1686,7 @@ export namespace ConversationRetrieveResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -1897,7 +1769,7 @@ export namespace ConversationRetrieveResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -1985,7 +1857,7 @@ export namespace ConversationRetrieveResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -2125,23 +1997,7 @@ export namespace ConversationRetrieveResponse {
         /**
          * Type of event that occurred
          */
-        eventType:
-          | 'assigned'
-          | 'unassigned'
-          | 'participant_requested'
-          | 'participant_joined'
-          | 'participant_left'
-          | 'status_changed'
-          | 'priority_changed'
-          | 'tag_added'
-          | 'tag_removed'
-          | 'resolved'
-          | 'reopened'
-          | 'visitor_blocked'
-          | 'visitor_unblocked'
-          | 'visitor_identified'
-          | 'ai_paused'
-          | 'ai_resumed';
+        eventType: 'assigned' | 'unassigned' | 'participant_requested' | 'participant_joined' | 'participant_left' | 'status_changed' | 'priority_changed' | 'tag_added' | 'tag_removed' | 'resolved' | 'reopened' | 'visitor_blocked' | 'visitor_unblocked' | 'visitor_identified' | 'ai_paused' | 'ai_resumed';
 
         /**
          * AI agent targeted by the event, if applicable
@@ -2242,18 +2098,7 @@ export namespace ConversationListResponse {
        * compatible parts (text, reasoning, tool-\*, source-url, source-document,
        * step-start, file, image) and Cossistant-specific parts (event, metadata).
        */
-      parts: Array<
-        | LastTimelineItem.UnionMember0
-        | LastTimelineItem.UnionMember1
-        | LastTimelineItem.UnionMember2
-        | LastTimelineItem.UnionMember3
-        | LastTimelineItem.UnionMember4
-        | LastTimelineItem.Type
-        | LastTimelineItem.UnionMember6
-        | LastTimelineItem.UnionMember7
-        | LastTimelineItem.UnionMember8
-        | LastTimelineItem.UnionMember9
-      >;
+      parts: Array<LastTimelineItem.UnionMember0 | LastTimelineItem.UnionMember1 | LastTimelineItem.UnionMember2 | LastTimelineItem.UnionMember3 | LastTimelineItem.UnionMember4 | LastTimelineItem.Type | LastTimelineItem.UnionMember6 | LastTimelineItem.UnionMember7 | LastTimelineItem.UnionMember8 | LastTimelineItem.UnionMember9>;
 
       /**
        * Main text content of the timeline item
@@ -2337,7 +2182,7 @@ export namespace ConversationListResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -2437,7 +2282,7 @@ export namespace ConversationListResponse {
         export interface CallProviderMetadata {
           cossistant?: CallProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace CallProviderMetadata {
@@ -2494,7 +2339,7 @@ export namespace ConversationListResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -2577,7 +2422,7 @@ export namespace ConversationListResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -2665,7 +2510,7 @@ export namespace ConversationListResponse {
         export interface ProviderMetadata {
           cossistant?: ProviderMetadata.Cossistant;
 
-          [k: string]: unknown;
+        [k: string]: unknown
         }
 
         export namespace ProviderMetadata {
@@ -2805,23 +2650,7 @@ export namespace ConversationListResponse {
         /**
          * Type of event that occurred
          */
-        eventType:
-          | 'assigned'
-          | 'unassigned'
-          | 'participant_requested'
-          | 'participant_joined'
-          | 'participant_left'
-          | 'status_changed'
-          | 'priority_changed'
-          | 'tag_added'
-          | 'tag_removed'
-          | 'resolved'
-          | 'reopened'
-          | 'visitor_blocked'
-          | 'visitor_unblocked'
-          | 'visitor_identified'
-          | 'ai_paused'
-          | 'ai_resumed';
+        eventType: 'assigned' | 'unassigned' | 'participant_requested' | 'participant_joined' | 'participant_left' | 'status_changed' | 'priority_changed' | 'tag_added' | 'tag_removed' | 'resolved' | 'reopened' | 'visitor_blocked' | 'visitor_unblocked' | 'visitor_identified' | 'ai_paused' | 'ai_resumed';
 
         /**
          * AI agent targeted by the event, if applicable
@@ -2918,18 +2747,7 @@ export namespace ConversationGetTimelineResponse {
      * compatible parts (text, reasoning, tool-\*, source-url, source-document,
      * step-start, file, image) and Cossistant-specific parts (event, metadata).
      */
-    parts: Array<
-      | Item.UnionMember0
-      | Item.UnionMember1
-      | Item.UnionMember2
-      | Item.UnionMember3
-      | Item.UnionMember4
-      | Item.Type
-      | Item.UnionMember6
-      | Item.UnionMember7
-      | Item.UnionMember8
-      | Item.UnionMember9
-    >;
+    parts: Array<Item.UnionMember0 | Item.UnionMember1 | Item.UnionMember2 | Item.UnionMember3 | Item.UnionMember4 | Item.Type | Item.UnionMember6 | Item.UnionMember7 | Item.UnionMember8 | Item.UnionMember9>;
 
     /**
      * Main text content of the timeline item
@@ -3013,7 +2831,7 @@ export namespace ConversationGetTimelineResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -3113,7 +2931,7 @@ export namespace ConversationGetTimelineResponse {
       export interface CallProviderMetadata {
         cossistant?: CallProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace CallProviderMetadata {
@@ -3170,7 +2988,7 @@ export namespace ConversationGetTimelineResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -3253,7 +3071,7 @@ export namespace ConversationGetTimelineResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -3341,7 +3159,7 @@ export namespace ConversationGetTimelineResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -3481,23 +3299,7 @@ export namespace ConversationGetTimelineResponse {
       /**
        * Type of event that occurred
        */
-      eventType:
-        | 'assigned'
-        | 'unassigned'
-        | 'participant_requested'
-        | 'participant_joined'
-        | 'participant_left'
-        | 'status_changed'
-        | 'priority_changed'
-        | 'tag_added'
-        | 'tag_removed'
-        | 'resolved'
-        | 'reopened'
-        | 'visitor_blocked'
-        | 'visitor_unblocked'
-        | 'visitor_identified'
-        | 'ai_paused'
-        | 'ai_resumed';
+      eventType: 'assigned' | 'unassigned' | 'participant_requested' | 'participant_joined' | 'participant_left' | 'status_changed' | 'priority_changed' | 'tag_added' | 'tag_removed' | 'resolved' | 'reopened' | 'visitor_blocked' | 'visitor_unblocked' | 'visitor_identified' | 'ai_paused' | 'ai_resumed';
 
       /**
        * AI agent targeted by the event, if applicable
@@ -3643,18 +3445,7 @@ export namespace ConversationCreateParams {
      * compatible parts (text, reasoning, tool-\*, source-url, source-document,
      * step-start, file, image) and Cossistant-specific parts (event, metadata).
      */
-    parts: Array<
-      | DefaultTimelineItem.UnionMember0
-      | DefaultTimelineItem.UnionMember1
-      | DefaultTimelineItem.UnionMember2
-      | DefaultTimelineItem.UnionMember3
-      | DefaultTimelineItem.UnionMember4
-      | DefaultTimelineItem.Type
-      | DefaultTimelineItem.UnionMember6
-      | DefaultTimelineItem.UnionMember7
-      | DefaultTimelineItem.UnionMember8
-      | DefaultTimelineItem.UnionMember9
-    >;
+    parts: Array<DefaultTimelineItem.UnionMember0 | DefaultTimelineItem.UnionMember1 | DefaultTimelineItem.UnionMember2 | DefaultTimelineItem.UnionMember3 | DefaultTimelineItem.UnionMember4 | DefaultTimelineItem.Type | DefaultTimelineItem.UnionMember6 | DefaultTimelineItem.UnionMember7 | DefaultTimelineItem.UnionMember8 | DefaultTimelineItem.UnionMember9>;
 
     /**
      * Main text content of the timeline item
@@ -3738,7 +3529,7 @@ export namespace ConversationCreateParams {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -3838,7 +3629,7 @@ export namespace ConversationCreateParams {
       export interface CallProviderMetadata {
         cossistant?: CallProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace CallProviderMetadata {
@@ -3895,7 +3686,7 @@ export namespace ConversationCreateParams {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -3978,7 +3769,7 @@ export namespace ConversationCreateParams {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -4066,7 +3857,7 @@ export namespace ConversationCreateParams {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -4206,23 +3997,7 @@ export namespace ConversationCreateParams {
       /**
        * Type of event that occurred
        */
-      eventType:
-        | 'assigned'
-        | 'unassigned'
-        | 'participant_requested'
-        | 'participant_joined'
-        | 'participant_left'
-        | 'status_changed'
-        | 'priority_changed'
-        | 'tag_added'
-        | 'tag_removed'
-        | 'resolved'
-        | 'reopened'
-        | 'visitor_blocked'
-        | 'visitor_unblocked'
-        | 'visitor_identified'
-        | 'ai_paused'
-        | 'ai_resumed';
+      eventType: 'assigned' | 'unassigned' | 'participant_requested' | 'participant_joined' | 'participant_left' | 'status_changed' | 'priority_changed' | 'tag_added' | 'tag_removed' | 'resolved' | 'reopened' | 'visitor_blocked' | 'visitor_unblocked' | 'visitor_identified' | 'ai_paused' | 'ai_resumed';
 
       /**
        * AI agent targeted by the event, if applicable
@@ -4379,13 +4154,13 @@ export declare namespace Conversations {
     type ConversationListParams as ConversationListParams,
     type ConversationGetTimelineParams as ConversationGetTimelineParams,
     type ConversationReportTypingParams as ConversationReportTypingParams,
-    type ConversationSubmitRatingParams as ConversationSubmitRatingParams,
+    type ConversationSubmitRatingParams as ConversationSubmitRatingParams
   };
 
   export {
     Seen as Seen,
     type SeenGetSeenDataResponse as SeenGetSeenDataResponse,
     type SeenMarkAsSeenResponse as SeenMarkAsSeenResponse,
-    type SeenMarkAsSeenParams as SeenMarkAsSeenParams,
+    type SeenMarkAsSeenParams as SeenMarkAsSeenParams
   };
 }

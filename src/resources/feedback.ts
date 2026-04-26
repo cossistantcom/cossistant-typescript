@@ -14,11 +14,8 @@ export class Feedback extends APIResource {
    * const feedbacks = await client.feedback.list();
    * ```
    */
-  list(
-    query: FeedbackListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<FeedbackListResponse> {
-    return this._client.get('/v1/feedback', { query, ...options, __security: {} });
+  list(query: FeedbackListParams | null | undefined = {}, options?: RequestOptions): APIPromise<FeedbackListResponse> {
+    return this._client.get('/v1/feedback', { query, ...options, __security: {  } });
   }
 
   /**
@@ -30,7 +27,7 @@ export class Feedback extends APIResource {
    * ```
    */
   retrieveID(options?: RequestOptions): APIPromise<FeedbackRetrieveIDResponse> {
-    return this._client.get('/v1/feedback/:id', { ...options, __security: {} });
+    return this._client.get('/v1/feedback/:id', { ...options, __security: {  } });
   }
 
   /**
@@ -45,7 +42,7 @@ export class Feedback extends APIResource {
    * ```
    */
   submit(body: FeedbackSubmitParams, options?: RequestOptions): APIPromise<FeedbackSubmitResponse> {
-    return this._client.post('/v1/feedback', { body, ...options, __security: {} });
+    return this._client.post('/v1/feedback', { body, ...options, __security: {  } });
   }
 }
 
@@ -372,6 +369,6 @@ export declare namespace Feedback {
     type FeedbackRetrieveIDResponse as FeedbackRetrieveIDResponse,
     type FeedbackSubmitResponse as FeedbackSubmitResponse,
     type FeedbackListParams as FeedbackListParams,
-    type FeedbackSubmitParams as FeedbackSubmitParams,
+    type FeedbackSubmitParams as FeedbackSubmitParams
   };
 }

@@ -10,19 +10,8 @@ export class Messages extends APIResource {
    * Send a new message (timeline item) to an existing conversation.
    */
   send(params: MessageSendParams, options?: RequestOptions): APIPromise<MessageSendResponse> {
-    const { 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID, ...body } = params;
-    return this._client.post('/v1/messages', {
-      body,
-      ...options,
-      headers: buildHeaders([
-        {
-          ...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined),
-          ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined),
-        },
-        options?.headers,
-      ]),
-      __security: {},
-    });
+    const { 'X-Public-Key': xPublicKey, 'X-Visitor-Id': xVisitorID, ...body } = params
+    return this._client.post('/v1/messages', { body, ...options, headers: buildHeaders([{...(xPublicKey != null ? { 'X-Public-Key': xPublicKey } : undefined), ...(xVisitorID != null ? { 'X-Visitor-Id': xVisitorID } : undefined)}, options?.headers]), __security: {  } });
   }
 }
 
@@ -66,18 +55,7 @@ export namespace MessageSendResponse {
      * compatible parts (text, reasoning, tool-\*, source-url, source-document,
      * step-start, file, image) and Cossistant-specific parts (event, metadata).
      */
-    parts: Array<
-      | Item.UnionMember0
-      | Item.UnionMember1
-      | Item.UnionMember2
-      | Item.UnionMember3
-      | Item.UnionMember4
-      | Item.Type
-      | Item.UnionMember6
-      | Item.UnionMember7
-      | Item.UnionMember8
-      | Item.UnionMember9
-    >;
+    parts: Array<Item.UnionMember0 | Item.UnionMember1 | Item.UnionMember2 | Item.UnionMember3 | Item.UnionMember4 | Item.Type | Item.UnionMember6 | Item.UnionMember7 | Item.UnionMember8 | Item.UnionMember9>;
 
     /**
      * Main text content of the timeline item
@@ -161,7 +139,7 @@ export namespace MessageSendResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -261,7 +239,7 @@ export namespace MessageSendResponse {
       export interface CallProviderMetadata {
         cossistant?: CallProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace CallProviderMetadata {
@@ -318,7 +296,7 @@ export namespace MessageSendResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -401,7 +379,7 @@ export namespace MessageSendResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -489,7 +467,7 @@ export namespace MessageSendResponse {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -629,23 +607,7 @@ export namespace MessageSendResponse {
       /**
        * Type of event that occurred
        */
-      eventType:
-        | 'assigned'
-        | 'unassigned'
-        | 'participant_requested'
-        | 'participant_joined'
-        | 'participant_left'
-        | 'status_changed'
-        | 'priority_changed'
-        | 'tag_added'
-        | 'tag_removed'
-        | 'resolved'
-        | 'reopened'
-        | 'visitor_blocked'
-        | 'visitor_unblocked'
-        | 'visitor_identified'
-        | 'ai_paused'
-        | 'ai_resumed';
+      eventType: 'assigned' | 'unassigned' | 'participant_requested' | 'participant_joined' | 'participant_left' | 'status_changed' | 'priority_changed' | 'tag_added' | 'tag_removed' | 'resolved' | 'reopened' | 'visitor_blocked' | 'visitor_unblocked' | 'visitor_identified' | 'ai_paused' | 'ai_resumed';
 
       /**
        * AI agent targeted by the event, if applicable
@@ -732,18 +694,7 @@ export namespace MessageSendParams {
      * compatible parts (text, reasoning, tool-\*, source-url, source-document,
      * step-start, file, image) and Cossistant-specific parts (event, metadata).
      */
-    parts?: Array<
-      | Item.UnionMember0
-      | Item.UnionMember1
-      | Item.UnionMember2
-      | Item.UnionMember3
-      | Item.UnionMember4
-      | Item.Type
-      | Item.UnionMember6
-      | Item.UnionMember7
-      | Item.UnionMember8
-      | Item.UnionMember9
-    >;
+    parts?: Array<Item.UnionMember0 | Item.UnionMember1 | Item.UnionMember2 | Item.UnionMember3 | Item.UnionMember4 | Item.Type | Item.UnionMember6 | Item.UnionMember7 | Item.UnionMember8 | Item.UnionMember9>;
 
     /**
      * Optional tool identifier when sending non-message timeline items
@@ -812,7 +763,7 @@ export namespace MessageSendParams {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -912,7 +863,7 @@ export namespace MessageSendParams {
       export interface CallProviderMetadata {
         cossistant?: CallProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace CallProviderMetadata {
@@ -969,7 +920,7 @@ export namespace MessageSendParams {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -1052,7 +1003,7 @@ export namespace MessageSendParams {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -1140,7 +1091,7 @@ export namespace MessageSendParams {
       export interface ProviderMetadata {
         cossistant?: ProviderMetadata.Cossistant;
 
-        [k: string]: unknown;
+      [k: string]: unknown
       }
 
       export namespace ProviderMetadata {
@@ -1280,23 +1231,7 @@ export namespace MessageSendParams {
       /**
        * Type of event that occurred
        */
-      eventType:
-        | 'assigned'
-        | 'unassigned'
-        | 'participant_requested'
-        | 'participant_joined'
-        | 'participant_left'
-        | 'status_changed'
-        | 'priority_changed'
-        | 'tag_added'
-        | 'tag_removed'
-        | 'resolved'
-        | 'reopened'
-        | 'visitor_blocked'
-        | 'visitor_unblocked'
-        | 'visitor_identified'
-        | 'ai_paused'
-        | 'ai_resumed';
+      eventType: 'assigned' | 'unassigned' | 'participant_requested' | 'participant_joined' | 'participant_left' | 'status_changed' | 'priority_changed' | 'tag_added' | 'tag_removed' | 'resolved' | 'reopened' | 'visitor_blocked' | 'visitor_unblocked' | 'visitor_identified' | 'ai_paused' | 'ai_resumed';
 
       /**
        * AI agent targeted by the event, if applicable
@@ -1334,5 +1269,8 @@ export namespace MessageSendParams {
 }
 
 export declare namespace Messages {
-  export { type MessageSendResponse as MessageSendResponse, type MessageSendParams as MessageSendParams };
+  export {
+    type MessageSendResponse as MessageSendResponse,
+    type MessageSendParams as MessageSendParams
+  };
 }

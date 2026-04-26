@@ -2,20 +2,9 @@
 
 import { APIResource } from '../../core/resource';
 import * as IDAPI from './id';
-import {
-  ID,
-  IDRetrieveIDResponse,
-  IDUpdateIDParams,
-  IDUpdateIDResponse,
-  IDUpdateMetadataParams,
-  IDUpdateMetadataResponse,
-} from './id';
+import { ID, IDRetrieveIDResponse, IDUpdateIDParams, IDUpdateIDResponse, IDUpdateMetadataParams, IDUpdateMetadataResponse } from './id';
 import * as OrganizationsAPI from './organizations/organizations';
-import {
-  OrganizationCreateParams,
-  OrganizationCreateResponse,
-  Organizations,
-} from './organizations/organizations';
+import { OrganizationCreateParams, OrganizationCreateResponse, Organizations } from './organizations/organizations';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -32,11 +21,8 @@ export class Contacts extends APIResource {
    * const contact = await client.contacts.create();
    * ```
    */
-  create(
-    body: ContactCreateParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ContactCreateResponse> {
-    return this._client.post('/v1/contacts', { body, ...options, __security: {} });
+  create(body: ContactCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<ContactCreateResponse> {
+    return this._client.post('/v1/contacts', { body, ...options, __security: {  } });
   }
 
   /**
@@ -52,7 +38,7 @@ export class Contacts extends APIResource {
    * ```
    */
   identify(body: ContactIdentifyParams, options?: RequestOptions): APIPromise<ContactIdentifyResponse> {
-    return this._client.post('/v1/contacts/identify', { body, ...options, __security: {} });
+    return this._client.post('/v1/contacts/identify', { body, ...options, __security: {  } });
   }
 }
 
@@ -273,13 +259,13 @@ export declare namespace Contacts {
     type ContactCreateResponse as ContactCreateResponse,
     type ContactIdentifyResponse as ContactIdentifyResponse,
     type ContactCreateParams as ContactCreateParams,
-    type ContactIdentifyParams as ContactIdentifyParams,
+    type ContactIdentifyParams as ContactIdentifyParams
   };
 
   export {
     Organizations as Organizations,
     type OrganizationCreateResponse as OrganizationCreateResponse,
-    type OrganizationCreateParams as OrganizationCreateParams,
+    type OrganizationCreateParams as OrganizationCreateParams
   };
 
   export {
@@ -288,6 +274,6 @@ export declare namespace Contacts {
     type IDUpdateIDResponse as IDUpdateIDResponse,
     type IDUpdateMetadataResponse as IDUpdateMetadataResponse,
     type IDUpdateIDParams as IDUpdateIDParams,
-    type IDUpdateMetadataParams as IDUpdateMetadataParams,
+    type IDUpdateMetadataParams as IDUpdateMetadataParams
   };
 }
