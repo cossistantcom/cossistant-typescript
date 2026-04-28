@@ -26,7 +26,5 @@ export interface OrganizationRetrieveIDResponse {
 }
 
 export declare namespace Organizations {
-  export {
-    type OrganizationRetrieveIDResponse as OrganizationRetrieveIDResponse
-  };
+  export { type OrganizationRetrieveIDResponse as OrganizationRetrieveIDResponse };
 }

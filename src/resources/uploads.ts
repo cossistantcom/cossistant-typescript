@@ -23,8 +23,11 @@ export class Uploads extends APIResource {
    * });
    * ```
    */
-  createSignURL(body: UploadCreateSignURLParams, options?: RequestOptions): APIPromise<UploadCreateSignURLResponse> {
-    return this._client.post('/v1/uploads/sign-url', { body, ...options, __security: {  } });
+  createSignURL(
+    body: UploadCreateSignURLParams,
+    options?: RequestOptions,
+  ): APIPromise<UploadCreateSignURLResponse> {
+    return this._client.post('/v1/uploads/sign-url', { body, ...options, __security: {} });
   }
 }
 
@@ -73,7 +76,11 @@ export interface UploadCreateSignURLParams {
   /**
    * Defines how uploaded files should be grouped inside the S3 bucket.
    */
-  scope: UploadCreateSignURLParams.UnionMember0 | UploadCreateSignURLParams.UnionMember1 | UploadCreateSignURLParams.UnionMember2 | UploadCreateSignURLParams.UnionMember3;
+  scope:
+    | UploadCreateSignURLParams.UnionMember0
+    | UploadCreateSignURLParams.UnionMember1
+    | UploadCreateSignURLParams.UnionMember2
+    | UploadCreateSignURLParams.UnionMember3;
 
   websiteId: string;
 
@@ -204,6 +211,6 @@ export namespace UploadCreateSignURLParams {
 export declare namespace Uploads {
   export {
     type UploadCreateSignURLResponse as UploadCreateSignURLResponse,
-    type UploadCreateSignURLParams as UploadCreateSignURLParams
+    type UploadCreateSignURLParams as UploadCreateSignURLParams,
   };
 }

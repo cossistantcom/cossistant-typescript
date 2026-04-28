@@ -2,7 +2,14 @@
 
 import { APIResource } from '../../core/resource';
 import * as IDAPI from './id';
-import { ID, IDRetrieveIDResponse, IDUpdateIDParams, IDUpdateIDResponse, IDUpdateMetadataParams, IDUpdateMetadataResponse } from './id';
+import {
+  ID,
+  IDRetrieveIDResponse,
+  IDUpdateIDParams,
+  IDUpdateIDResponse,
+  IDUpdateMetadataParams,
+  IDUpdateMetadataResponse,
+} from './id';
 
 export class Visitors extends APIResource {
   id: IDAPI.ID = new IDAPI.ID(this._client);
@@ -17,6 +24,6 @@ export declare namespace Visitors {
     type IDUpdateIDResponse as IDUpdateIDResponse,
     type IDUpdateMetadataResponse as IDUpdateMetadataResponse,
     type IDUpdateIDParams as IDUpdateIDParams,
-    type IDUpdateMetadataParams as IDUpdateMetadataParams
+    type IDUpdateMetadataParams as IDUpdateMetadataParams,
   };
 }

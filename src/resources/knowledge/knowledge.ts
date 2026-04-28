@@ -22,7 +22,7 @@ export class Knowledge extends APIResource {
    * ```
    */
   create(body: KnowledgeCreateParams, options?: RequestOptions): APIPromise<KnowledgeCreateResponse> {
-    return this._client.post('/v1/knowledge', { body, ...options, __security: {  } });
+    return this._client.post('/v1/knowledge', { body, ...options, __security: {} });
   }
 
   /**
@@ -34,8 +34,11 @@ export class Knowledge extends APIResource {
    * const knowledges = await client.knowledge.list();
    * ```
    */
-  list(query: KnowledgeListParams | null | undefined = {}, options?: RequestOptions): APIPromise<KnowledgeListResponse> {
-    return this._client.get('/v1/knowledge', { query, ...options, __security: {  } });
+  list(
+    query: KnowledgeListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<KnowledgeListResponse> {
+    return this._client.get('/v1/knowledge', { query, ...options, __security: {} });
   }
 }
 
@@ -93,7 +96,10 @@ export interface KnowledgeCreateResponse {
    */
   origin: string;
 
-  payload: KnowledgeCreateResponse.UnionMember0 | KnowledgeCreateResponse.UnionMember1 | KnowledgeCreateResponse.UnionMember2;
+  payload:
+    | KnowledgeCreateResponse.UnionMember0
+    | KnowledgeCreateResponse.UnionMember1
+    | KnowledgeCreateResponse.UnionMember2;
 
   /**
    * Size of this entry in bytes
@@ -149,7 +155,7 @@ export namespace KnowledgeCreateResponse {
 
     links?: Array<string>;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export namespace UnionMember0 {
@@ -193,7 +199,7 @@ export namespace KnowledgeCreateResponse {
 
     relatedQuestions?: Array<string>;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export interface UnionMember2 {
@@ -216,7 +222,7 @@ export namespace KnowledgeCreateResponse {
      */
     summary?: string | null;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export namespace UnionMember2 {
@@ -360,7 +366,7 @@ export namespace KnowledgeListResponse {
 
       links?: Array<string>;
 
-    [k: string]: unknown
+      [k: string]: unknown;
     }
 
     export namespace UnionMember0 {
@@ -404,7 +410,7 @@ export namespace KnowledgeListResponse {
 
       relatedQuestions?: Array<string>;
 
-    [k: string]: unknown
+      [k: string]: unknown;
     }
 
     export interface UnionMember2 {
@@ -427,7 +433,7 @@ export namespace KnowledgeListResponse {
        */
       summary?: string | null;
 
-    [k: string]: unknown
+      [k: string]: unknown;
     }
 
     export namespace UnionMember2 {
@@ -480,7 +486,10 @@ export interface KnowledgeCreateParams {
   /**
    * Structured payload for raw page content
    */
-  payload: KnowledgeCreateParams.UnionMember0 | KnowledgeCreateParams.UnionMember1 | KnowledgeCreateParams.UnionMember2;
+  payload:
+    | KnowledgeCreateParams.UnionMember0
+    | KnowledgeCreateParams.UnionMember1
+    | KnowledgeCreateParams.UnionMember2;
 
   /**
    * Knowledge entry type
@@ -645,13 +654,13 @@ export declare namespace Knowledge {
     type KnowledgeCreateResponse as KnowledgeCreateResponse,
     type KnowledgeListResponse as KnowledgeListResponse,
     type KnowledgeCreateParams as KnowledgeCreateParams,
-    type KnowledgeListParams as KnowledgeListParams
+    type KnowledgeListParams as KnowledgeListParams,
   };
 
   export {
     ID as ID,
     type IDRetrieveIDResponse as IDRetrieveIDResponse,
     type IDUpdateIDResponse as IDUpdateIDResponse,
-    type IDUpdateIDParams as IDUpdateIDParams
+    type IDUpdateIDParams as IDUpdateIDParams,
   };
 }

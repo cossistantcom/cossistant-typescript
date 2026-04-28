@@ -2,7 +2,10 @@
 
 import Cossistant from 'cossistant';
 
-const client = new Cossistant({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
+const client = new Cossistant({
+  apiKey: 'My API Key',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+});
 
 describe('resource seen', () => {
   // Mock server tests are disabled
@@ -32,8 +35,12 @@ describe('resource seen', () => {
   // Mock server tests are disabled
   test.skip('markAsSeen: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.conversations.seen.markAsSeen('conversationId', { visitorId: 'visitorId' }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Cossistant.NotFoundError);
+    await expect(
+      client.conversations.seen.markAsSeen(
+        'conversationId',
+        { visitorId: 'visitorId' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Cossistant.NotFoundError);
   });
 });

@@ -19,7 +19,7 @@ export class Seen extends APIResource {
    * ```
    */
   getSeenData(conversationID: string, options?: RequestOptions): APIPromise<SeenGetSeenDataResponse> {
-    return this._client.get(path`/v1/conversations/${conversationID}/seen`, { ...options, __security: {  } });
+    return this._client.get(path`/v1/conversations/${conversationID}/seen`, { ...options, __security: {} });
   }
 
   /**
@@ -32,8 +32,16 @@ export class Seen extends APIResource {
    * );
    * ```
    */
-  markAsSeen(conversationID: string, body: SeenMarkAsSeenParams | null | undefined = {}, options?: RequestOptions): APIPromise<SeenMarkAsSeenResponse> {
-    return this._client.post(path`/v1/conversations/${conversationID}/seen`, { body, ...options, __security: {  } });
+  markAsSeen(
+    conversationID: string,
+    body: SeenMarkAsSeenParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<SeenMarkAsSeenResponse> {
+    return this._client.post(path`/v1/conversations/${conversationID}/seen`, {
+      body,
+      ...options,
+      __security: {},
+    });
   }
 }
 
@@ -90,6 +98,6 @@ export declare namespace Seen {
   export {
     type SeenGetSeenDataResponse as SeenGetSeenDataResponse,
     type SeenMarkAsSeenResponse as SeenMarkAsSeenResponse,
-    type SeenMarkAsSeenParams as SeenMarkAsSeenParams
+    type SeenMarkAsSeenParams as SeenMarkAsSeenParams,
   };
 }
