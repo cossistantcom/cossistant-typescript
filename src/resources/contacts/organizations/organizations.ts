@@ -21,7 +21,7 @@ export class Organizations extends APIResource {
    * ```
    */
   create(body: OrganizationCreateParams, options?: RequestOptions): APIPromise<OrganizationCreateResponse> {
-    return this._client.post('/v1/contacts/organizations', { body, ...options, __security: {  } });
+    return this._client.post('/v1/contacts/organizations', { body, ...options, __security: {} });
   }
 }
 
@@ -109,13 +109,13 @@ Organizations.ID = ID;
 export declare namespace Organizations {
   export {
     type OrganizationCreateResponse as OrganizationCreateResponse,
-    type OrganizationCreateParams as OrganizationCreateParams
+    type OrganizationCreateParams as OrganizationCreateParams,
   };
 
   export {
     ID as ID,
     type IDRetrieveIDResponse as IDRetrieveIDResponse,
     type IDUpdateIDResponse as IDUpdateIDResponse,
-    type IDUpdateIDParams as IDUpdateIDParams
+    type IDUpdateIDParams as IDUpdateIDParams,
   };
 }

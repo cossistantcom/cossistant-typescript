@@ -15,7 +15,11 @@ export class ID extends APIResource {
    * ```
    */
   deleteID(options?: RequestOptions): APIPromise<void> {
-    return this._client.delete('/v1/knowledge/:id', { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]), __security: {  } });
+    return this._client.delete('/v1/knowledge/:id', {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
+    });
   }
 
   /**
@@ -27,7 +31,7 @@ export class ID extends APIResource {
    * ```
    */
   retrieveID(options?: RequestOptions): APIPromise<IDRetrieveIDResponse> {
-    return this._client.get('/v1/knowledge/:id', { ...options, __security: {  } });
+    return this._client.get('/v1/knowledge/:id', { ...options, __security: {} });
   }
 
   /**
@@ -38,8 +42,11 @@ export class ID extends APIResource {
    * const response = await client.knowledge.id.updateID();
    * ```
    */
-  updateID(body: IDUpdateIDParams | null | undefined = {}, options?: RequestOptions): APIPromise<IDUpdateIDResponse> {
-    return this._client.patch('/v1/knowledge/:id', { body, ...options, __security: {  } });
+  updateID(
+    body: IDUpdateIDParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<IDUpdateIDResponse> {
+    return this._client.patch('/v1/knowledge/:id', { body, ...options, __security: {} });
   }
 }
 
@@ -97,7 +104,10 @@ export interface IDRetrieveIDResponse {
    */
   origin: string;
 
-  payload: IDRetrieveIDResponse.UnionMember0 | IDRetrieveIDResponse.UnionMember1 | IDRetrieveIDResponse.UnionMember2;
+  payload:
+    | IDRetrieveIDResponse.UnionMember0
+    | IDRetrieveIDResponse.UnionMember1
+    | IDRetrieveIDResponse.UnionMember2;
 
   /**
    * Size of this entry in bytes
@@ -153,7 +163,7 @@ export namespace IDRetrieveIDResponse {
 
     links?: Array<string>;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export namespace UnionMember0 {
@@ -197,7 +207,7 @@ export namespace IDRetrieveIDResponse {
 
     relatedQuestions?: Array<string>;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export interface UnionMember2 {
@@ -220,7 +230,7 @@ export namespace IDRetrieveIDResponse {
      */
     summary?: string | null;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export namespace UnionMember2 {
@@ -292,7 +302,10 @@ export interface IDUpdateIDResponse {
    */
   origin: string;
 
-  payload: IDUpdateIDResponse.UnionMember0 | IDUpdateIDResponse.UnionMember1 | IDUpdateIDResponse.UnionMember2;
+  payload:
+    | IDUpdateIDResponse.UnionMember0
+    | IDUpdateIDResponse.UnionMember1
+    | IDUpdateIDResponse.UnionMember2;
 
   /**
    * Size of this entry in bytes
@@ -348,7 +361,7 @@ export namespace IDUpdateIDResponse {
 
     links?: Array<string>;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export namespace UnionMember0 {
@@ -392,7 +405,7 @@ export namespace IDUpdateIDResponse {
 
     relatedQuestions?: Array<string>;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export interface UnionMember2 {
@@ -415,7 +428,7 @@ export namespace IDUpdateIDResponse {
      */
     summary?: string | null;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export namespace UnionMember2 {
@@ -475,7 +488,7 @@ export namespace IDUpdateIDParams {
 
     links?: Array<string>;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export namespace UnionMember0 {
@@ -519,7 +532,7 @@ export namespace IDUpdateIDParams {
 
     relatedQuestions?: Array<string>;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export interface UnionMember2 {
@@ -542,7 +555,7 @@ export namespace IDUpdateIDParams {
      */
     summary?: string | null;
 
-  [k: string]: unknown
+    [k: string]: unknown;
   }
 
   export namespace UnionMember2 {
@@ -564,6 +577,6 @@ export declare namespace ID {
   export {
     type IDRetrieveIDResponse as IDRetrieveIDResponse,
     type IDUpdateIDResponse as IDUpdateIDResponse,
-    type IDUpdateIDParams as IDUpdateIDParams
+    type IDUpdateIDParams as IDUpdateIDParams,
   };
 }

@@ -14,7 +14,7 @@ export class ID extends APIResource {
    * ```
    */
   retrieveID(options?: RequestOptions): APIPromise<IDRetrieveIDResponse> {
-    return this._client.get('/v1/visitors/:id', { ...options, __security: {  } });
+    return this._client.get('/v1/visitors/:id', { ...options, __security: {} });
   }
 
   /**
@@ -26,8 +26,11 @@ export class ID extends APIResource {
    * const response = await client.visitors.id.updateID();
    * ```
    */
-  updateID(body: IDUpdateIDParams | null | undefined = {}, options?: RequestOptions): APIPromise<IDUpdateIDResponse> {
-    return this._client.patch('/v1/visitors/:id', { body, ...options, __security: {  } });
+  updateID(
+    body: IDUpdateIDParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<IDUpdateIDResponse> {
+    return this._client.patch('/v1/visitors/:id', { body, ...options, __security: {} });
   }
 
   /**
@@ -42,8 +45,11 @@ export class ID extends APIResource {
    * });
    * ```
    */
-  updateMetadata(body: IDUpdateMetadataParams, options?: RequestOptions): APIPromise<IDUpdateMetadataResponse> {
-    return this._client.patch('/v1/visitors/:id/metadata', { body, ...options, __security: {  } });
+  updateMetadata(
+    body: IDUpdateMetadataParams,
+    options?: RequestOptions,
+  ): APIPromise<IDUpdateMetadataResponse> {
+    return this._client.patch('/v1/visitors/:id/metadata', { body, ...options, __security: {} });
   }
 }
 
@@ -1479,6 +1485,6 @@ export declare namespace ID {
     type IDUpdateIDResponse as IDUpdateIDResponse,
     type IDUpdateMetadataResponse as IDUpdateMetadataResponse,
     type IDUpdateIDParams as IDUpdateIDParams,
-    type IDUpdateMetadataParams as IDUpdateMetadataParams
+    type IDUpdateMetadataParams as IDUpdateMetadataParams,
   };
 }

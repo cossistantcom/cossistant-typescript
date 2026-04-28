@@ -15,7 +15,11 @@ export class ID extends APIResource {
    * ```
    */
   deleteID(options?: RequestOptions): APIPromise<void> {
-    return this._client.delete('/v1/contacts/organizations/:id', { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]), __security: {  } });
+    return this._client.delete('/v1/contacts/organizations/:id', {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
+    });
   }
 
   /**
@@ -28,7 +32,7 @@ export class ID extends APIResource {
    * ```
    */
   retrieveID(options?: RequestOptions): APIPromise<IDRetrieveIDResponse> {
-    return this._client.get('/v1/contacts/organizations/:id', { ...options, __security: {  } });
+    return this._client.get('/v1/contacts/organizations/:id', { ...options, __security: {} });
   }
 
   /**
@@ -40,8 +44,11 @@ export class ID extends APIResource {
    *   await client.contacts.organizations.id.updateID();
    * ```
    */
-  updateID(body: IDUpdateIDParams | null | undefined = {}, options?: RequestOptions): APIPromise<IDUpdateIDResponse> {
-    return this._client.patch('/v1/contacts/organizations/:id', { body, ...options, __security: {  } });
+  updateID(
+    body: IDUpdateIDParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<IDUpdateIDResponse> {
+    return this._client.patch('/v1/contacts/organizations/:id', { body, ...options, __security: {} });
   }
 }
 
@@ -180,6 +187,6 @@ export declare namespace ID {
   export {
     type IDRetrieveIDResponse as IDRetrieveIDResponse,
     type IDUpdateIDResponse as IDUpdateIDResponse,
-    type IDUpdateIDParams as IDUpdateIDParams
+    type IDUpdateIDParams as IDUpdateIDParams,
   };
 }
